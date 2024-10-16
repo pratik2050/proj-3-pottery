@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Transfer Monument: {{ monument.monument }}</h1>
+<div class="card">
+    <div class="card-body">
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="name" class="form-label">New Handler Name</label>
+                <input type="text" name="name" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="transferred_quantity" class="form-label">Quantity to Transfer</label>
+                <input type="number" name="transferred_quantity" class="form-control" max="{{ monument.quantity }}" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="new_status" class="form-label">Transfer To</label>
+                <select name="new_status" class="form-select">
+                    <option value="polisher">Polisher</option>
+                    <option value="designer">Designer</option>
+                    <option value="stock">Stock</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Transfer</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

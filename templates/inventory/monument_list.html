@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="my-4">Monument Inventory</h1>
+
+<a href="{% url 'add_lot' %}" class="btn btn-primary mb-4">Add New Lot</a>
+<a href="{% url 'dashboard' %}" class="btn btn-primary mb-4">Go to Dashboard</a>
+
+<div class="row">
+    <!-- Owner Section -->
+    <div class="col-md-3">
+        <h2>Owner</h2>
+        <div class="card">
+            <div class="card-body">
+                <ul class="list-group">
+                    {% for monument in monuments %}
+                        {% if monument.status == "owner" %}
+                        <li class="list-group-item">
+                            <strong>Name:</strong> {{ monument.name }}<br>
+                            <strong>Monument:</strong> {{ monument.monument }}<br>
+                            <strong>Category:</strong> {{ monument.category }}<br>
+                            <strong>Weight:</strong> {{ monument.weight }} kg<br>
+                            <strong>Dimensions:</strong> {{ monument.length }} cm x {{ monument.width }} cm x {{ monument.height }} cm<br>
+                            <strong>Quantity:</strong> {{ monument.quantity }}<br>
+                            <strong>Created At:</strong> {{ monument.owner_created_at|date:"d M Y, H:i" }}<br>
+                            <a href="{% url 'transfer_monument' monument.id %}" class="btn btn-sm btn-success mt-2">Transfer</a>
+                            <a href="{% url 'delete_monument' monument.id %}" class="btn btn-sm btn-danger mt-2">Delete</a>
+                        </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Polisher Section -->
+    <div class="col-md-3">
+        <h2>Polisher</h2>
+        <div class="card">
+            <div class="card-body">
+                <ul class="list-group">
+                    {% for monument in monuments %}
+                        {% if monument.status == "polisher" %}
+                        <li class="list-group-item">
+                            <strong>Name:</strong> {{ monument.name }}<br>
+                            <strong>Monument:</strong> {{ monument.monument }}<br>
+                            <strong>Category:</strong> {{ monument.category }}<br>
+                            <strong>Weight:</strong> {{ monument.weight }} kg<br>
+                            <strong>Dimensions:</strong> {{ monument.length }} cm x {{ monument.width }} cm x {{ monument.height }} cm<br>
+                            <strong>Quantity:</strong> {{ monument.quantity }}<br>
+                            <strong>Created At:</strong> {{ monument.polisher_created_at|date:"d M Y, H:i" }}<br>
+                            <a href="{% url 'transfer_monument' monument.id %}" class="btn btn-sm btn-success mt-2">Transfer</a>
+                            <a href="{% url 'delete_monument' monument.id %}" class="btn btn-sm btn-danger mt-2">Delete</a>
+                        </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Designer Section -->
+    <div class="col-md-3">
+        <h2>Designer</h2>
+        <div class="card">
+            <div class="card-body">
+                <ul class="list-group">
+                    {% for monument in monuments %}
+                        {% if monument.status == "designer" %}
+                        <li class="list-group-item">
+                            <strong>Name:</strong> {{ monument.name }}<br>
+                            <strong>Monument:</strong> {{ monument.monument }}<br>
+                            <strong>Category:</strong> {{ monument.category }}<br>
+                            <strong>Weight:</strong> {{ monument.weight }} kg<br>
+                            <strong>Dimensions:</strong> {{ monument.length }} cm x {{ monument.width }} cm x {{ monument.height }} cm<br>
+                            <strong>Quantity:</strong> {{ monument.quantity }}<br>
+                            <strong>Created At:</strong> {{ monument.designer_created_at|date:"d M Y, H:i" }}<br>
+                            <a href="{% url 'transfer_monument' monument.id %}" class="btn btn-sm btn-success mt-2">Transfer</a>
+                            <a href="{% url 'delete_monument' monument.id %}" class="btn btn-sm btn-danger mt-2">Delete</a>
+                        </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stock Section -->
+    <div class="col-md-3">
+        <h2>Stock</h2>
+        <div class="card">
+            <div class="card-body">
+                <ul class="list-group">
+                    {% for monument in monuments %}
+                        {% if monument.status == "stock" %}
+                        <li class="list-group-item">
+                            <strong>Name:</strong> {{ monument.name }}<br>
+                            <strong>Monument:</strong> {{ monument.monument }}<br>
+                            <strong>Category:</strong> {{ monument.category }}<br>
+                            <strong>Weight:</strong> {{ monument.weight }} kg<br>
+                            <strong>Dimensions:</strong> {{ monument.length }} cm x {{ monument.width }} cm x {{ monument.height }} cm<br>
+                            <strong>Quantity:</strong> {{ monument.quantity }}<br>
+                            <strong>Created At:</strong> {{ monument.stock_created_at|date:"d M Y, H:i" }}<br>
+                            <a href="{% url 'delete_monument' monument.id %}" class="btn btn-sm btn-danger mt-2">Delete</a>
+                        </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
